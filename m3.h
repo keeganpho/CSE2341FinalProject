@@ -9,7 +9,6 @@
 #include "file.h"
 #include "metricanalyzer.h"
 #include "hashtable.h"
-#include "variable.h"
 #include "avltree.h"
 
 using namespace std;
@@ -36,8 +35,8 @@ public:
 protected:
     int metric;
     HashTable<char*,int> list;
-    LinkedList<char*> varNames;
-    LinkedList<char*> varOnce;
+    myVector<char*> varNames;
+    myVector<char*> varOnce;
     int totalVariables;
     int newVariables;
     double average;

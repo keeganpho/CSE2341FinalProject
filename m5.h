@@ -22,7 +22,7 @@ public:
 private:
     int metric;
     double average;
-    LinkedList<int> shortVar;
+    myVector<int> longVar;
 
 };
 

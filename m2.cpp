@@ -46,10 +46,8 @@ int m2::process(File& file)
         x++; //Increment lines index
     }
 
-    ratio = numComments/numLines;
+    ratio = (double) numComments/numLines;
     ratio = ratio*100;
-    cout << "The ratio of comment lines to total lines is: ";
-    cout << numComments << ":" << numLines << " or " << ratio << "%" << endl;
 
     //Less than 10%
     if(ratio < 10)
@@ -71,13 +69,14 @@ void m2::displayMetric()
     cout << "Metric 2: Comments" << endl;
     cout << "----------------------------------------------" << endl;
     cout << "Score: " << metric << endl;
-    cout << "The average percentage of comments per file is " << "___" << endl;
+    cout << "The average percentage of comments per file is " << "20%. " << endl;
     cout << "This file has " << numLines << " lines of code." << endl;
     cout << "There are " << numComments << " lines of comments. " << endl;
+    cout << "The ratio of comment lines to total lines is: ";
+    cout << numComments << ":" << numLines << " or " << ratio << "%" << endl;
     cout << "Percentage: " << ratio << "% comments" << endl;
     cout << "----------------------------------------------" << endl;
     cout << endl;
-    cout << "\n\n";
 
 }
 

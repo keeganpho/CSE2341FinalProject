@@ -22,11 +22,6 @@ int MetricAnalyzer::process(File& file)
     name = file.getName();
     type = file.getFileType();
 
-    if(type == 1)
-        cout << "This is a .cpp file. " << endl;
-    else
-        cout << "This is a .h file. " << endl;
-
     return 0;
 
 }
@@ -34,23 +29,27 @@ int MetricAnalyzer::process(File& file)
 //Open and parse file
 void MetricAnalyzer::openFile(char* file)
 {
-    //Should this call parent openFile(file) ?
     ifstream fin;
     fin.open(file);
 
     char buffer[200];
+    DSString temp;
 
     if(!fin.is_open())
+    {
         cout << "Error: File cannot open. " << endl;
+        return;
+    }
 
     while(!fin.eof())
     {
+        //fin.clear();
         numLines++;
         //Read line into buffer
         fin.getline(buffer,200);
         //Add to vector of lines
         DSString temp(buffer);
-        lines.add(temp);
+        lines.pushBack(temp);
     }
 
 }

@@ -18,7 +18,6 @@ m1::m1()
 int m1::process(File& file)
 {
     MetricAnalyzer::process(file);
-    cout << "'Good code' is 80-120 characters. " << endl;
     int lineLength;
     int total;
 
@@ -39,7 +38,8 @@ int m1::process(File& file)
         }
         total += lineLength;
     }
-    average = total / numLines;
+    if(numLines != 0)
+        average = total / numLines;
 
     return 1;
 
@@ -50,6 +50,7 @@ void m1::displayMetric()
     cout << "Metric 1: Line length" << endl;
     cout << "----------------------------------------------" << endl;
     cout << "Score: " << metric << endl;
+    cout << "'Good code' is 80-120 characters. " << endl;
     cout << "The average number of characters for each line " <<
             "in this file is " << average << " characters. " << endl;
     cout << "There are " << longLines.getSize() <<

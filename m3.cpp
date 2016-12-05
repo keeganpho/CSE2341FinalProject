@@ -267,19 +267,19 @@ void m3::displayMetric()
 
 }
 
-void m3:: checkList()
+void m3::checkList()
 {
-    int tempKey;
-    for(int i=0; i<list.getLength(); i++)
-    {
-        tempKey = list.getItemByKey(varNames[i]);
-        if(tempKey == 1)
-        {
-            usedOnce++;
-            varOnce.pushBack(varNames[i]);
-        }
+//    int tempKey;
+//    for(int i=0; i<list.getLength(); i++)
+//    {
+//        tempKey = list.getItemByKey(varNames[i]);
+//        if(tempKey == 1)
+//        {
+//            usedOnce++;
+//            varOnce.pushBack(varNames[i]);
+//        }
 
-    }
+//    }
 
 }
 
@@ -515,5 +515,6 @@ int m3::findBool(DSString& string)
 
 void m3::calculate()
 {
-    average = totalVariables / newVariables;
+    if(newVariables != 0)
+        average = totalVariables / newVariables;
 }

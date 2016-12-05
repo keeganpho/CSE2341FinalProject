@@ -9,7 +9,7 @@ using namespace std;
 //Constructor
 DSString::DSString():str('\0'), length(0), cap(0)
 {
-    str = new char[10];
+    //str = new char[10];
 }
 
 //Copy Constructor with a passed char pointer
@@ -52,25 +52,32 @@ int DSString::getLength()
 //Overloaded Assignment Operator with char pointer
 DSString& DSString::operator= (char* rhs)
 {
-    if(str != '\0') //If left isn't empty
-         delete[] str; //Delete elements
-    if(rhs != '\0') //If rhs isn't empty
-    {
-        int clength=0; //Length of rhs
-        int i=0; //Indexer
-        while(rhs[i] != '\0') //While rhs has elements
-        {
-            clength++; //Length of rhs
-            i++; //Indexer
-        }
+    int s = strlen(str);
+    memcpy(str
+           ,rhs,s+1);
+    length = s;
 
-        this-> str = new char [clength]; //Dynamically allocate to new length
+    return *this;
 
-        for(int x=0; x<clength; x++)
-            str[x] = rhs[x]; //Put new elements into str
-    }
+//    if(str != '\0') //If left isn't empty
+//         delete[] str; //Delete elements
+//    if(rhs != '\n') //If rhs isn't empty
+//    {
+//        int clength=0; //Length of rhs
+//        int i=0; //Indexer
+//        while(rhs[i] != '\n') //While rhs has elements
+//        {
+//            clength++; //Length of rhs
+//            i++; //Indexer
+//        }
 
-    return *this; //Return address
+//        this-> str = new char [clength]; //Dynamically allocate to new length
+
+//        for(int x=0; x<clength; x++)
+//            str[x] = rhs[x]; //Put new elements into str
+//    }
+
+//    return *this; //Return address
 }
 
 //Overloaded assignment operator

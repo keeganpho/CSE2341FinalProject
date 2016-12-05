@@ -16,7 +16,7 @@ m5::m5()
 int m5::process(File& file)
 {
     m3::process(file);
-    average = strlen(varNames.get(0));
+    average = 0;
     int tempSize;
     char* temp;
     for(int i=0; i<varNames.getSize(); i++)
@@ -28,7 +28,7 @@ int m5::process(File& file)
         if(tempSize > 10)
         {
             metric += 10;
-            shortVar.pushBack(i);
+            longVar.pushBack(i);
         }
     }
 
@@ -44,11 +44,11 @@ void m5::displayMetric()
     cout << "The average length of variable names is " <<
             average << " characters. " << endl;
     cout << "Good variable names are under the length of 10. " << endl;
-    cout << "There are " << shortVar.getSize() << " that are too long. " << endl;
+    cout << "There are " << longVar.getSize() << " brackets that are too long. " << endl;
     cout << "Change the names of the following variables: " << endl;
-    for(int i=0; i<shortVar.getSize(); i++)
+    for(int i=0; i<longVar.getSize(); i++)
     {
-        int temp = shortVar.get(i);
+        int temp = longVar.get(i);
         cout << varNames.get(temp) << endl;
     }
     cout << "----------------------------------------------" << endl;

@@ -44,20 +44,28 @@ int main(int argc, char* argv[])
 
     numFiles = 0; //Number of files in directory
 
+    ofstream output(argv[3]);
+    if(!output)
+    {
+        cerr << "Error: unable to open output file. " << endl;
+    }
+
     //Opens directory containing multiple files
     searchDir(argv[2]);
 
+    DSString outType(argv[1]);
     DSString directory(argv[2]);
     DSString fileName;
+    cout << fileName << endl;
 
-    cout << "There are " << numFiles << " in this path directory." << endl;
+    output << "There are " << numFiles << " files in this path directory." << endl;
 
     //For all the files that exists in directory
     for(int f=0; f<numFiles; f++)
     {
         DSString temp(files.get(f).getName());
         fileName = directory + temp;
-        cout << "File " << f+1 << ": " << fileName << endl;
+        output << "File " << f+1 << ": " << fileName << endl;
 
         //For the 5 metrics
         for(int i=0; i<numMetrics; i++)
@@ -66,20 +74,21 @@ int main(int argc, char* argv[])
             metrics[i]->openFile(fileName.c_str());
             //Perform specific metric on individual file
             metrics[i]->process(files.get(f));
-            cout << "Metric " << i << " is complete." << endl;
+
             //Verbose
-            if(argv[1] == "-v")
+            if(outType == "-v")
             {
                 metrics[i]->displayMetric();
-                cout << "\n\n" << endl;
                 score += metrics[i]->getMetric();
             }
             //Brief
             else
                 cout << metrics[i]->getMetric() << endl;
+            output << "Metric " << i+1 << " is complete." << endl;
+            output << "\n\n";
         }
 
-        cout << fileName << " had a total score of " << score << endl;
+        output << fileName << " had a total score of " << score << endl;
 
     }
 
@@ -98,7 +107,8 @@ void searchDir(char* arg)
 
     if (pDir == NULL)
     {
-        cout << "Cannot open directory. " << endl;
+        cerr << "Cannot open directory. " << endl;
+        return;
     }
     while ( pDirent = readdir(pDir) )
     {
